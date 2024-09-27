@@ -11,11 +11,13 @@ This is a simple demo project showcasing how to set up a PHP application with My
 
 ```
 project/
+├── Dockerfile
+├── Makefile
+├── LICENSE
+├── README.md
 ├── docker-compose.yml
-├── php/
-│   └── index.php
-└── mysql/
-    └── my.cnf
+└── src/
+    └── index.php
 ```
 
 ## Getting Started
@@ -31,10 +33,11 @@ cd Docker-php
 
 ### 2. Create Your PHP Application
 
-Inside the `php` directory, create an `index.php` file with the following content:
+Inside the `src` directory, create an `index.php` file with the following content:
 
-```<?php
-$servername = "mysql-db";
+```php
+<?php
+$servername = "mysql";
 $username = "user";
 $password = "user_password";
 $dbname = "sampledb";
@@ -46,24 +49,24 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-echo "Connected successfully to MySQL database! ";
-echo "Line 1" . PHP_EOL . "Line 2";
+echo "Connected successfully";
+?>
+```
 
-echo "update";
-echo "new!!";
-echo "Hello, World!<br>";
+### 3. Create the Dockerfile
 
-?>```
+Create a `Dockerfile` with the following content:
 
-### 3. Configure MySQL
-
-In the `mysql` directory, create a `my.cnf` file with your desired MySQL configuration (optional).
+```Dockerfile
+FROM php:8.0-apache
+COPY src/ /var/www/html/
+```
 
 ### 4. Create the Docker Compose File
 
 Create a `docker-compose.yml` file with the following content:
 
-```
+```yaml
 version: '3.8'
 
 services:
@@ -139,3 +142,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [PHP](https://www.php.net/)
 - [MySQL](https://www.mysql.com/)
 - [Apache](https://httpd.apache.org/)
+
