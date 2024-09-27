@@ -128,24 +128,52 @@ networks:
     driver: bridge
 ```
 
-### 5. Build and Run the Containers
+### 5. Create the Makefile
 
-In the project directory, run the following command to start the Docker containers:
+Create a `Makefile` with the following content:
 
-```bash
-docker-compose up -d
+```makefile
+run-dev:
+	docker-compose up -d
+
+down-dev:
+	docker-compose down
 ```
 
-### 6. Access the Application
+#### About the Makefile
+
+The `Makefile` is used to simplify the commands needed to run and manage your Docker containers. It allows you to define easy-to-remember commands for common tasks.
+
+- `run-dev`: This command starts the Docker containers in detached mode using `docker-compose up -d`. You can run this by executing:
+
+    ```bash
+    make run-dev
+    ```
+
+- `down-dev`: This command stops and removes the Docker containers using `docker-compose down`. You can run this by executing:
+
+    ```bash
+    make down-dev
+    ```
+
+### 6. Build and Run the Containers
+
+In the project directory, you can now use the `Makefile` to start the Docker containers:
+
+```bash
+make run-dev
+```
+
+### 7. Access the Application
 
 Open your web browser and go to `http://localhost:8080`. You should see the message "Connected successfully" if everything is set up correctly.
 
-### 7. Stopping the Containers
+### 8. Stopping the Containers
 
-To stop the running containers, use:
+To stop the running containers using the `Makefile`, run:
 
 ```bash
-docker-compose down
+make down-dev
 ```
 
 ## Troubleshooting
