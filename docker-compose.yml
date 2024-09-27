@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  apache:
+    build: .
+    container_name: apache-web
+    ports:
+      - "8080:80"
+    networks:
+      - my-bridge-network
+    depends_on:
+      - mysql
+    volumes:
+      - ./src/:/var/www/html
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: sampledb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - my-bridge-network
+
+volumes:
+  mysql_data:
+
+networks:
+  my-bridge-network:
+    driver: bridge
+
