@@ -16,7 +16,7 @@ project/
 ├── LICENSE
 ├── README.md
 ├── docker-compose.yml
-└── src/
+└── app/
     └── index.php
 ```
 
@@ -33,7 +33,7 @@ cd Docker-php
 
 ### 2. Create Your PHP Application
 
-Inside the `src` directory, create an `index.php` file with the following content:
+Inside the `app` directory, create an `index.php` file with the following content:
 
 ```php
 <?php
@@ -74,7 +74,7 @@ RUN apt-get update && apt-get install -y \
 RUN a2enmod rewrite
 
 # Copy the PHP application code to the Apache document root
-COPY src/ /var/www/html/
+COPY app/ /var/www/html/
 
 # Copy custom php.ini if needed
 COPY php.ini /usr/local/etc/php/php.ini
@@ -105,7 +105,7 @@ services:
     depends_on:
       - mysql
     volumes:
-      - ./src/:/var/www/html
+      - ./app/:/var/www/html
 
   mysql:
     image: mysql:8.0
