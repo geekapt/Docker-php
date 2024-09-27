@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 RUN a2enmod rewrite
 
 # Copy the PHP application code to the Apache document root
-COPY src/ /var/www/html/
+COPY app/ /var/www/html/
 
 # Copy custom php.ini if needed
 COPY php.ini /usr/local/etc/php/php.ini
