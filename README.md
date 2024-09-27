@@ -25,8 +25,8 @@ Follow these steps to set up and run the project:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/php-mysql-apache-demo.git
-cd php-mysql-apache-demo
+git clone https://github.com/geekapt/Docker-php.git
+cd Docker-php
 ```
 
 ### 2. Create Your PHP Application
