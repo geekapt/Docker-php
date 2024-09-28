@@ -17,7 +17,7 @@ RUN a2enmod rewrite
 COPY app/ /var/www/html/
 
 # Copy custom php.ini if needed
-COPY php.ini /usr/local/etc/php/php.ini
+# COPY php.ini /usr/local/etc/php/php.ini  # Uncomment if you have a custom php.ini
 
 # Set file permissions for Apache
 RUN chown -R www-data:www-data /var/www/html \
@@ -25,4 +25,3 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # Expose port 80 for the web service
 EXPOSE 80
-
