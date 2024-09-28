@@ -117,6 +117,18 @@ services:
       MYSQL_PASSWORD: user_password
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Ensure this line is correct
+    networks:
+      - my-bridge-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root_password  # Use the same root password
+    ports:
+      - "8081:80"  # Access phpMyAdmin at http://localhost:8081
     networks:
       - my-bridge-network
 
@@ -126,6 +138,7 @@ volumes:
 networks:
   my-bridge-network:
     driver: bridge
+
 ```
 
 ### 5. Create the Makefile
