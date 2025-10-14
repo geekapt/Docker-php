@@ -3,7 +3,7 @@ version: '3.8'
 services:
   apache:
     #build: .
-    image: "imumesh/docker-php:latest"
+    image: "imumesh/docker-php:latest" #image from dockerhub
     container_name: apache-web
     ports:
       - "8080:80"
